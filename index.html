@@ -37,7 +37,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 function render(){
  const L=list(),n=Math.max(1,Math.ceil(L.length/PS));pg=Math.min(pg,n-1);
  document.getElementById('grid').innerHTML=L.slice(pg*PS,pg*PS+PS).map(it=>`<div class="card"><img src="${it.im}"><div class="id"><b>${esc(it.f)}</b><br>original_id: ${esc(it.o)} · ${it.i}</div>${st[it.i]?`<div class="id" style="color:var(--bad);font-weight:600">CHANGED: ${esc(chg(it))}</div>`:''}`+
-  C.map((c,k)=>`<div class="row"><span class="cn">${c}</span><span class="mo ${it.t[k]!==it.m[k]?'dis':''}">folder: ${esc(it.t[k])} · model: ${esc(it.m[k])} (${it.pr[k]})</span><span class="bs">`+
+  C.map((c,k)=>`<div class="row"><span class="cn">${c}</span><span class="mo ${it.t[k]!==it.m[k]?'dis':''}">label: ${esc(it.t[k])} · model: ${esc(it.m[k])} (${it.pr[k]})</span><span class="bs">`+
   D.opts[c].map(v=>`<button data-i="${it.i}" data-c="${c}" data-v="${esc(v)}" class="${cur(it,k)===v?(v!==it.t[k]?'fix':'on'):''}">${esc(v)}</button>`).join('')+`</span></div>`).join('')+`</div>`).join('');
  document.getElementById('pg').textContent=`${pg+1}/${n}`;
  document.getElementById('stat').textContent=`${L.length} shown · ${Object.keys(st).length} images corrected`;
